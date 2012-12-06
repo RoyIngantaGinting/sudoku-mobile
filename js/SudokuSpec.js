@@ -1,11 +1,31 @@
 function SudokuSpec(specValues){
+	this.MASKEDSIGN = 0;
 	this.matrix = specValues;
 	this.length = this.matrix[0].length;
-	this.sumValue = 45;
 	
 	// Set value at specific cell
 	this.setValueAt = function(value, row, column){
 		this.matrix[row][column] = value;
+	}
+	this.setMaskAt = function(row, column){
+		this.setValueAt(this.MASKEDSIGN, row, column);
+	}
+	this.isMasked = function(row, column){
+		return this.getValueAt(row, column) == this.MASKEDSIGN;
+	}
+	this.getMaskedColumn = function(columnNumber){
+		var masked = new Array(),column = this.extractColumn(columnNumber);
+		var sign = this.MASKEDSIGN;
+		
+		column.every( function(value){ if (value == sign){ masked.push(value); } } );
+		return masked;
+	}
+	this.getMaskedRow = function(rowNumber){
+		var masked = new Array(),row = this.extractRow(rowNumber);
+		var sign = this.MASKEDSIGN;
+		
+		row.every( function(value){ if (value == sign){ masked.push(value); } } );
+		return masked;
 	}
 	// Get value at specific cell
 	this.getValueAt = function(row, column){
@@ -14,21 +34,15 @@ function SudokuSpec(specValues){
 	// Check whether value of a row is valid
 	this.isRowFilled = function(number){
 		var i = 0;
-		var tabValue = new Array();
+		var tabValue = this.extractRow(number);
 		
-		for (;i<this.length; i++){
-			tabValue.push(this.matrix[number][i]);
-		}
 		return this.isArrayFilled();
 	}
 	// Check whether values of a column is valid
 	this.isColumnFilled = function(number){
 		var i = 0;
-		var tabValue = new Array();
+		var tabValue = this.extractColumn(number);
 		
-		for (;i<this.length; i++){
-			tabValue.push(this.matrix[i][number]);
-		}
 		return this.isArrayFilled(tabValue);
 	}
 	// Check whether valued of an array is valid
@@ -63,6 +77,24 @@ function SudokuSpec(specValues){
 			}
 		} else eq = false;
 		return eq;
+	}
+	// Extract one column from the matrix
+	this.extractColumn = function(columnNumber){
+		var i, columns = new Array();
+		
+		for (i=0; i<this.length; i++){
+			columns.push(this.matrix[i][columnNumber]);
+		}
+		return columns;
+	}
+	// Extract one row from the matrix
+	this.extractRow = function(rowNumber){
+		var i, columns = new Array();
+		
+		for (i=0; i<this.length; i++){
+			columns.push(this.matrix[rowNumber][i]);
+		}
+		return columns;
 	}
 	// Cloning the matrix
 	this.cloneMatrix = function(){
