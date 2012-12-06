@@ -55,4 +55,12 @@ function SudokuModel(sudokuValues){
 	this.generateArea = function(){
 		return this.rand(2*this.interval);
 	}
+	// output to console
+	this.toConsole = function(){
+		this.spec.toConsole();
+	}
+	// Get string representation
+	this.toString = function(){
+		this.spec.toString();
+	}
 }
