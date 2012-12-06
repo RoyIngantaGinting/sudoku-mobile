@@ -7,12 +7,15 @@ function SudokuSpec(specValues){
 	this.setValueAt = function(value, row, column){
 		this.matrix[row][column] = value;
 	}
+	// Set masked at specific cell
 	this.setMaskAt = function(row, column){
 		this.setValueAt(this.MASKEDSIGN, row, column);
 	}
+	// Check whether given cell is masked or not
 	this.isMasked = function(row, column){
 		return this.getValueAt(row, column) == this.MASKEDSIGN;
 	}
+	// Get masked positions at specific column 
 	this.getMaskedColumn = function(columnNumber){
 		var masked = new Array(),column = this.extractColumn(columnNumber);
 		var sign = this.MASKEDSIGN;
@@ -20,6 +23,7 @@ function SudokuSpec(specValues){
 		column.every( function(value){ if (value == sign){ masked.push(value); } } );
 		return masked;
 	}
+	// Get masked positions at specific row
 	this.getMaskedRow = function(rowNumber){
 		var masked = new Array(),row = this.extractRow(rowNumber);
 		var sign = this.MASKEDSIGN;

@@ -14,6 +14,7 @@ function SudokuModel(sudokuValues){
 			this.swapLineInArea(areaNumber, typeNumber);
 		}
 	}
+	// Create mask with criterias two mask in every column and one in every row
 	this.createMaskedSpec = function(){
 		var i, temp, numbers, spec = this.spec.cloneMatrix();
 		
