@@ -21,11 +21,11 @@
 		function init(){
 			sudoku = new SudokuModel(matrix);
 			sudoku.toConsole();
+			console.log("initial value of matrix");
 			sudoku.randomize(80);
 			sudoku.createMaskedSpec();
 			sudoku.toConsole();
-			
-			sudoku.maskedSpec.toConsole();
+			console.log("value inside matrix after being masked");
 		}
 	</script>
 </head>
