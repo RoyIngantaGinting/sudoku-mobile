@@ -20,11 +20,11 @@
 		
 		function init(){
 			sudoku = new SudokuModel(matrix);
-			sudoku.toConsole();
-			//console.log("initial value of matrix");
-			//sudoku.randomize(80);
-			//sudoku.createMaskedSpec();
 			//sudoku.toConsole();
+			//console.log("initial value of matrix");
+			sudoku.randomize(80);
+			sudoku.createMaskedSpec();
+			sudoku.toConsole();
 			//console.log("value inside matrix after being masked");
 			console.log(JSON.stringify(sudoku.spec.extractSubMatrix(6)));
 			console.log(JSON.stringify(sudoku.spec.extractSubMatrix(7)));

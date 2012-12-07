@@ -36,6 +36,13 @@ function SudokuSpec(specValues){
 	this.getValueAt = function(row, column){
 		this.matrix[row][column];
 	}
+	
+	// Check whether value of a sub matrix is valid
+	this.isSubMatrixFilled = function(number){
+		var subMatrix = this.extractSubMatrix(number);
+		var tabValue = this.matrixToArray(subMatrix);
+		return this.isArrayFilled();
+	}
 	// Check whether value of a row is valid
 	this.isRowFilled = function(number){
 		var i = 0;
@@ -145,7 +152,30 @@ function SudokuSpec(specValues){
 		this.matrix[rowStart][colStart] = this.matrix[rowEnd][colEnd];
 		this.matrix[rowEnd][colEnd] = temp;
 	}
-	
+	// Verify that values in matrix is valid
+	this.verify = function(){
+		var i, flag = true;
+		
+		for (i=0; i<this.length; i++){
+			flag = this.isSubMatrixFilled(i) && this.isRowFilled(i) && this.isColumnFilled(i);
+			if (!flag){
+				break;
+			}
+		}
+		return flag;
+	}
+	// Convert matrix into one dimensional array
+	this.matrixToArray = function(subMatrix){
+		var arr = new Array(), i, j;
+		var length = subMatrix[0].length;
+		
+		for (i=0; i<length; i++){
+			for(j=0; j<length; j++){
+				arr.push(subMatrix[i][j]);
+			}
+		}
+		return arr;
+	}
 	// Debugging purpose
 	this.toString = function(){
 		return JSON.stringify(this.matrix);
