@@ -19,16 +19,16 @@ function SudokuModel(sudokuValues){
 		var i, temp, numbers, spec = this.spec.cloneMatrix();
 		
 		this.maskedSpec = new SudokuSpec(spec);
-		// random position in a column that will be masked
-		for (i=0; i<9; i++){
-			selectedColumns = this.generateTwoNumbers();
-			this.maskedSpec.setMaskAt(selectedColumns[0], i);
-			this.maskedSpec.setMaskAt(selectedColumns[1], i);
-		}
 		// random position in a row that will be masked
 		for (i=0; i<9; i++){
-			temp = this.generateUniqueNumber(this.maskedSpec.getMaskedRow(i));
-			this.maskedSpec.setMaskAt(i, temp);
+			selectedRows = this.generateTwoNumbers();
+			this.maskedSpec.setMaskAt(i, selectedRows[0]);
+			this.maskedSpec.setMaskAt(i, selectedRows[1]);
+		}
+		// random position in a column that will be masked
+		for (i=0; i<9; i++){
+			temp = this.generateUniqueNumber(this.maskedSpec.getMaskedColumn(i));
+			this.maskedSpec.setMaskAt(temp, i);
 		}
 	}
 	// areaNumber is number between 0 - 5 inclusive
