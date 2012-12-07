@@ -54,7 +54,7 @@ function SudokuModel(sudokuValues){
 
 		numbers.push(this.rand(9));
 		do{
-			temp = this.rand();
+			temp = this.rand(9);
 		} while (temp == numbers[0]);
 		numbers.push(temp);
 		return numbers;
@@ -64,7 +64,7 @@ function SudokuModel(sudokuValues){
 		var temp;
 		
 		do{
-			temp = this.rand();
+			temp = this.rand(9);
 		} while (comparator.indexOf(temp) != -1);
 		return temp;
 	}
