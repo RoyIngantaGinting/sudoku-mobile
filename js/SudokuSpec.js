@@ -2,6 +2,7 @@ function SudokuSpec(specValues){
 	this.MASKEDSIGN = 0;
 	this.matrix = specValues;
 	this.length = this.matrix[0].length;
+	this.interval = 3;
 	
 	// Set value at specific cell
 	this.setValueAt = function(value, row, column){
@@ -49,7 +50,7 @@ function SudokuSpec(specValues){
 		
 		return this.isArrayFilled(tabValue);
 	}
-	// Check whether valued of an array is valid
+	// Check whether value of an array is valid
 	this.isArrayFilled = function(tabValue){
 		var sortValue = tabValue.sort();
 		var i = 0;
@@ -99,6 +100,22 @@ function SudokuSpec(specValues){
 			columns.push(this.matrix[rowNumber][i]);
 		}
 		return columns;
+	}
+	// Extract one matrix from the matrix
+	this.extractSubMatrix = function(number){
+		var row = this.interval * Math.floor(number / this.interval);
+		var column = this.interval * (number % this.interval);
+		var i, j, subMatrix, temp;
+		
+		subMatrix = new Array();
+		for (i=row; i<row + this.interval; i++){
+			temp = new Array();
+			for (j=column; j<column + this.interval; j++){
+				temp.push(this.matrix[i][j]);
+			}
+			subMatrix.push(temp);
+		}
+		return subMatrix;
 	}
 	// Cloning the matrix
 	this.cloneMatrix = function(){

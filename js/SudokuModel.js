@@ -1,7 +1,6 @@
 function SudokuModel(sudokuValues){
 	this.spec = new SudokuSpec(sudokuValues);
 	this.type = [[0,1], [0, 2], [1, 2]];
-	this.interval = 3;
 	this.maskedSpec;
 	
 	// random value of the matrix for given times
@@ -71,22 +70,22 @@ function SudokuModel(sudokuValues){
 	// Calculate index from areaNumber and typeNumber
 	this.getIndex = function(areaNumber, typeNumber){
 		var result = new Array();
-		areaNumber = areaNumber % this.interval;
-		result.push(this.type[typeNumber][0] + areaNumber * this.interval);
-		result.push(this.type[typeNumber][1] + areaNumber * this.interval);
+		areaNumber = areaNumber % this.spec.interval;
+		result.push(this.type[typeNumber][0] + areaNumber * this.spec.interval);
+		result.push(this.type[typeNumber][1] + areaNumber * this.spec.interval);
 		return result;
 	}
 	// Check whether given area number is located on column or not
 	this.isColumn = function(areaNumber){
-		return areaNumber / this.interval < 1;
+		return areaNumber / this.spec.interval < 1;
 	}
 	// Generate valid random type
 	this.generateType = function(){
-		return this.rand(this.interval);
+		return this.rand(this.spec.interval);
 	}
 	// Generate valid random area number
 	this.generateArea = function(){
-		return this.rand(2*this.interval);
+		return this.rand(2*this.spec.interval);
 	}
 	// output to console
 	this.toConsole = function(){
