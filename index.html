@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>Test SudokuModel.js</title>
-	<script type="text/javascript" src="js/SudokuModel.js"></script>
+	<script type="text/javascript" src="js/SudokuModelLV.js"></script>
 	<script type="text/javascript" src="js/SudokuSpec.js"></script>
 	<script type="text/javascript" src="js/utils.js"></script>
 	<script type="text/javascript">
@@ -20,7 +20,7 @@
 		var masked;
 		
 		function init(){
-			sudoku = new SudokuModel(matrix);
+			sudoku = new SudokuModelLV(matrix);
 			//sudoku.toConsole();
 			//console.log("initial value of matrix");
 			sudoku.randomize(80);

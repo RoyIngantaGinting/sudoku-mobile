@@ -1,4 +1,4 @@
-function SudokuModel(sudokuValues){
+function SudokuModelLV(sudokuValues){
 	this.spec = new SudokuSpec(sudokuValues);
 	this.type = [[0,1], [0, 2], [1, 2]];
 	this.maskedSpec;
