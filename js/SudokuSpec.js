@@ -36,7 +36,12 @@ function SudokuSpec(specValues){
 	this.getValueAt = function(row, column){
 		this.matrix[row][column];
 	}
-	
+	// Get sub matrix number of given cell
+	this.getSubmatrixNumber = function(row, column){
+		var baseRow = Math.floor(row / this.interval);
+		var baseCol = Math.floor(column / this.interval);
+		return baseRow * this.interval + baseCol;
+	}
 	// Check whether value of a sub matrix is valid
 	this.isSubMatrixFilled = function(number){
 		var subMatrix = this.extractSubMatrix(number);
