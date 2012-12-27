@@ -4,7 +4,7 @@ function SudokuModelLV(sudokuValues){
 	this.maskedSpec;
 	
 	// random value of the matrix for given times
-	this.randomize = function(limit){
+	this.generate = function(limit){
 		var areaNumber, typeNumber, i;
 		
 		for (i=0; i<limit; i++){
@@ -20,7 +20,7 @@ function SudokuModelLV(sudokuValues){
 		this.maskedSpec = new SudokuSpec(spec);
 		// random position in a row that will be masked
 		for (i=0; i<9; i++){
-			selectedRows = generateTwoNumbers();
+			selectedRows = generateTwoDiffNumbers();
 			this.maskedSpec.setMaskAt(i, selectedRows[0]);
 			this.maskedSpec.setMaskAt(i, selectedRows[1]);
 		}

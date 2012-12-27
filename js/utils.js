@@ -3,7 +3,7 @@ function rand(limit){
 	return Math.floor(Math.random() * limit);
 }
 // Generate two different number between 0 (inclusive) and 9 (exclusive)
-function generateTwoNumbers(){
+function generateTwoDiffNumbers(){
 	var temp, numbers = new Array();
 
 	numbers.push(rand(9));
@@ -12,6 +12,10 @@ function generateTwoNumbers(){
 	} while (temp == numbers[0]);
 	numbers.push(temp);
 	return numbers;
+}
+function generateCell(){
+	var temp = [rand(9), rand(9)];
+	return temp;
 }
 // Generate valid random type
 function generateType(){
@@ -29,4 +33,10 @@ function generateUniqueNumber(comparator){
 		temp = rand(9);
 	} while (comparator.indexOf(temp) != -1);
 	return temp;
+}
+function getSubMatrixNumber(row, column){
+	var limit = 3;
+	var tempRow = Math.floor(row / limit) * limit;
+	var tempCol = Math.floor(column / limit);
+	return tempRow + tempCol;
 }

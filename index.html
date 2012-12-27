@@ -2,6 +2,7 @@
 <head>
 	<title>Test SudokuModel.js</title>
 	<script type="text/javascript" src="js/SudokuModelLV.js"></script>
+	<script type="text/javascript" src="js/SudokuModelMC.js"></script>
 	<script type="text/javascript" src="js/SudokuSpec.js"></script>
 	<script type="text/javascript" src="js/utils.js"></script>
 	<script type="text/javascript">
@@ -17,19 +18,24 @@
 				[6, 7, 8, 	9, 1, 2, 	3, 4, 5]
 			]
 		var sudoku;
+		var mc;
 		var masked;
 		
 		function init(){
-			sudoku = new SudokuModelLV(matrix);
+			//sudoku = new SudokuModelLV(matrix);
 			//sudoku.toConsole();
 			//console.log("initial value of matrix");
-			sudoku.randomize(80);
-			sudoku.createMaskedSpec();
-			sudoku.toConsole();
+			//sudoku.generate(80);
+			//sudoku.createMaskedSpec();
+			//sudoku.toConsole();
 			//console.log("value inside matrix after being masked");
-			console.log(JSON.stringify(sudoku.spec.extractSubMatrix(6)));
-			console.log(JSON.stringify(sudoku.spec.extractSubMatrix(7)));
-			console.log(JSON.stringify(sudoku.spec.extractSubMatrix(8)));
+			//console.log(JSON.stringify(sudoku.spec.extractSubMatrix(6)));
+			//console.log(JSON.stringify(sudoku.spec.extractSubMatrix(7)));
+			//console.log(JSON.stringify(sudoku.spec.extractSubMatrix(8)));
+			mc = new SudokuModelMC(50);
+			mc.generate();
+			mc.maskedSpec.toConsole();
+			console.log("Total masked cell", mc.maskedSpec.getTotalMasked());
 		}
 	</script>
 </head>

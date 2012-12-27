@@ -7,6 +7,7 @@ function SudokuSpec(specValues){
 	// Set value at specific cell
 	this.setValueAt = function(value, row, column){
 		this.matrix[row][column] = value;
+		console.log("value at " + row + ", " + column + " = ", this.getValueAt(row, column));
 	}
 	// Set masked at specific cell
 	this.setMaskAt = function(row, column){
@@ -21,7 +22,7 @@ function SudokuSpec(specValues){
 		var masked = new Array(),column = this.extractColumn(columnNumber);
 		var sign = this.MASKEDSIGN;
 		
-		column.every( function(value){ if (value == sign){ masked.push(value); } } );
+		column.every( function(value){ if (value == sign){ masked.push(value); } return true; } );
 		return masked;
 	}
 	// Get masked positions at specific row
@@ -29,12 +30,20 @@ function SudokuSpec(specValues){
 		var masked = new Array(),row = this.extractRow(rowNumber);
 		var sign = this.MASKEDSIGN;
 		
-		row.every( function(value){ if (value == sign){ masked.push(value); } } );
+		row.every( function(value){ if (value == sign){ masked.push(value); } return true; } );
 		return masked;
+	}
+	this.getTotalMasked = function(){
+		var total = 0, i, tab;
+		for (i=0; i<this.length; i++){
+			tab = this.getMaskedRow(i);
+			total += tab.length;
+		}
+		return total;
 	}
 	// Get value at specific cell
 	this.getValueAt = function(row, column){
-		this.matrix[row][column];
+		return this.matrix[row][column];
 	}
 	// Get sub matrix number of given cell
 	this.getSubmatrixNumber = function(row, column){
