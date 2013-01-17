@@ -1,12 +1,17 @@
 <html>
 <head>
-	<title>Test SudokuModel.js</title>
+	<title>Sudoku Mobile</title>
+	<link rel="stylesheet" href="jquery.mobile-1.2.0.min.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.2.0.min.js"></script>
+	<script type="text/javascript" src="js/Sudoku.js"></script>
 	<script type="text/javascript" src="js/SudokuModelLV.js"></script>
 	<script type="text/javascript" src="js/SudokuModelMC.js"></script>
 	<script type="text/javascript" src="js/SudokuSpec.js"></script>
 	<script type="text/javascript" src="js/utils.js"></script>
 	<script type="text/javascript">
-		var matrix = [
+		var limit = 50,
+			matrix = [
 				[1, 2, 3, 	4, 5, 6, 	7, 8, 9],
 				[7, 8, 9, 	1, 2, 3, 	4, 5, 6],
 				[4, 5, 6, 	7, 8, 9, 	1, 2, 3],
@@ -16,29 +21,91 @@
 				[3, 4, 5, 	6, 7, 8, 	9, 1, 2],
 				[9, 1, 2, 	3, 4, 5, 	6, 7, 8],
 				[6, 7, 8, 	9, 1, 2, 	3, 4, 5]
-			]
-		var sudoku;
-		var mc;
-		var masked;
+			];
+		var sudoku = new Sudoku();
 		
-		function init(){
-			//sudoku = new SudokuModelLV(matrix);
-			//sudoku.toConsole();
-			//console.log("initial value of matrix");
-			//sudoku.generate(80);
-			//sudoku.createMaskedSpec();
-			//sudoku.toConsole();
-			//console.log("value inside matrix after being masked");
-			//console.log(JSON.stringify(sudoku.spec.extractSubMatrix(6)));
-			//console.log(JSON.stringify(sudoku.spec.extractSubMatrix(7)));
-			//console.log(JSON.stringify(sudoku.spec.extractSubMatrix(8)));
-			mc = new SudokuModelMC(50);
-			mc.generate();
-			mc.maskedSpec.toConsole();
-			console.log("Total masked cell", mc.maskedSpec.getTotalMasked());
-		}
+		$(document).ready(function(){
+			$("#btn-lv").on('tap', function(){
+				sudoku.init("lv");
+			});
+			$("#btn-mc").on('tap', function(){
+				sudoku.init("mc");
+			});
+			$("#popupContainer").on('tap', function(evt){
+				sudoku.popupHandler(evt);
+			});
+		});
 	</script>
 </head>
-<body onload="init()">
+<body>
+
+<!-- Page Home -->
+<div data-role="page" id="home">
+	<div data-role="header">
+		<h1>Sudoku Mobile</h1>
+	</div data-role="content">
+		<fieldset data-role="controlgroup">
+		<legend>Pilih Mode Permainan: </legend>
+		<a href="#lvscreen" data-role="button" id="btn-lv">Las Vegas</a>
+		<a href="#mcscreen" data-role="button" id="btn-mc">Monte Carlo</a>
+		</fieldset>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h1>Sudoku Mobile</h1>
+	</div>
+</div>
+
+<!-- Page Las Vegas -->
+<div data-role="page" id="lvscreen">
+	<div data-role="header">
+		<a href="index.html" data-icon="home" data-iconpos="notext" data-role="button">Home</a>
+		<h1>Las Vegas</h1>
+	</div>
+	<div data-role="content" id="contentlv">
+		<!-- content auto-generated -->
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h1>Sudoku Mobile</h1>
+	</div>
+	
+	<div data-role="popup" id="popupAngka">
+		<ul data-role="listview" data-inset="true" style="min-width:100px" data-mini="true">
+			<li data-role="divider">Pilih Angka</li>
+			<li>
+				<div id="popupContainer">
+					<div id="popupRow1" data-role="controlgroup" data-type="horizontal" data-mini="true">
+						<a href="#" data-role="button" data-inline="true">1</a>
+						<a href="#" data-role="button" data-inline="true">2</a>
+						<a href="#" data-role="button" data-inline="true">3</a>
+					</div>
+					<div id="popupRow2" data-role="controlgroup" data-type="horizontal" data-mini="true">
+						<a href="#" data-role="button" data-inline="true">4</a>
+						<a href="#" data-role="button" data-inline="true">5</a>
+						<a href="#" data-role="button" data-inline="true">6</a>
+					</div>
+					<div id="popupRow3" data-role="controlgroup" data-type="horizontal" data-mini="true">
+						<a href="#" data-role="button" data-inline="true">7</a>
+						<a href="#" data-role="button" data-inline="true">8</a>
+						<a href="#" data-role="button" data-inline="true">9</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!-- Page Monte Carlo -->
+<div data-role="page" id="mcscreen">
+	<div data-role="header">
+		<a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+		<h1>Monte Carlo</h1>
+	</div>
+	<div data-role="content" id="contentmc">
+		
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h1>Sudoku Mobile</h1>
+	</div>
+</div>
 </body>
 </html>

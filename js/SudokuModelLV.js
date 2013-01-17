@@ -12,6 +12,7 @@ function SudokuModelLV(sudokuValues){
 			typeNumber = generateType();
 			this.swapLineInArea(areaNumber, typeNumber);
 		}
+		this.createMaskedSpec();
 	}
 	// Create mask with criterias two mask in every column and one in every row
 	this.createMaskedSpec = function(){
@@ -29,6 +30,15 @@ function SudokuModelLV(sudokuValues){
 			temp = generateUniqueNumber(this.maskedSpec.getMaskedColumn(i));
 			this.maskedSpec.setMaskAt(temp, i);
 		}
+	}
+	this.getValueAt = function(col, row){
+		return this.maskedSpec.getValueAt(col, row);
+	}
+	this.setValueAt = function(value, col, row){
+		this.maskedSpec.setValueAt(value, col, row);
+	}
+	this.isSelesai = function(){
+		return this.maskedSpec.isSudoku();
 	}
 	// areaNumber is number between 0 - 5 inclusive
 	// type indicate type of subtitution. 0 means (0, 1), 1 means (0, 2), 2 means (1, 2)
@@ -57,7 +67,7 @@ function SudokuModelLV(sudokuValues){
 	}
 	// output to console
 	this.toConsole = function(){
-		this.spec.toConsole();
+		this.maskedSpec.toConsole();
 	}
 	// Get string representation
 	this.toString = function(){
