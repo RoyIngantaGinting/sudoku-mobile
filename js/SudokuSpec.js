@@ -76,14 +76,14 @@ function SudokuSpec(specValues){
 	this.isSubMatrixFilled = function(number){
 		var subMatrix = this.extractSubMatrix(number);
 		var tabValue = this.matrixToArray(subMatrix);
-		return this.isArrayFilled();
+		return this.isArrayFilled(tabValue);
 	}
 	// Check whether value of a row is valid
 	this.isRowFilled = function(number){
 		var i = 0;
 		var tabValue = this.extractRow(number);
 		
-		return this.isArrayFilled();
+		return this.isArrayFilled(tabValue);
 	}
 	// Check whether values of a column is valid
 	this.isColumnFilled = function(number){

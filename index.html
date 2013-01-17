@@ -31,6 +31,9 @@
 			$("#btn-mc").on('tap', function(){
 				sudoku.init("mc");
 			});
+			$("#popupContainerlv").on('tap', function(evt){
+				sudoku.popupHandler(evt);
+			});
 			$("#popupContainer").on('tap', function(evt){
 				sudoku.popupHandler(evt);
 			});
@@ -68,11 +71,11 @@
 		<h1>Sudoku Mobile</h1>
 	</div>
 	
-	<div data-role="popup" id="popupAngka">
+	<div data-role="popup" id="popupAngkalv">
 		<ul data-role="listview" data-inset="true" style="min-width:100px" data-mini="true">
 			<li data-role="divider">Pilih Angka</li>
 			<li>
-				<div id="popupContainer">
+				<div id="popupContainerlv">
 					<div id="popupRow1" data-role="controlgroup" data-type="horizontal" data-mini="true">
 						<a href="#" data-role="button" data-inline="true">1</a>
 						<a href="#" data-role="button" data-inline="true">2</a>
@@ -106,6 +109,32 @@
 	<div data-role="footer" data-position="fixed">
 		<h1>Sudoku Mobile</h1>
 	</div>
+	
+	<div data-role="popup" id="popupAngkamc">
+		<ul data-role="listview" data-inset="true" style="min-width:100px" data-mini="true">
+			<li data-role="divider">Pilih Angka</li>
+			<li>
+				<div id="popupContainer">
+					<div id="popupRow1" data-role="controlgroup" data-type="horizontal" data-mini="true">
+						<a href="#" data-role="button" data-inline="true">1</a>
+						<a href="#" data-role="button" data-inline="true">2</a>
+						<a href="#" data-role="button" data-inline="true">3</a>
+					</div>
+					<div id="popupRow2" data-role="controlgroup" data-type="horizontal" data-mini="true">
+						<a href="#" data-role="button" data-inline="true">4</a>
+						<a href="#" data-role="button" data-inline="true">5</a>
+						<a href="#" data-role="button" data-inline="true">6</a>
+					</div>
+					<div id="popupRow3" data-role="controlgroup" data-type="horizontal" data-mini="true">
+						<a href="#" data-role="button" data-inline="true">7</a>
+						<a href="#" data-role="button" data-inline="true">8</a>
+						<a href="#" data-role="button" data-inline="true">9</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
 </div>
+
 </body>
 </html>
