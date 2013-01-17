@@ -28,7 +28,7 @@ function Sudoku(){
 				angka = this.model.getValueAt(i-1, j-1);
 				patokan = this.nilaiPatokan[ i-1 ][ j-1 ];
 				cls = ( patokan != 0) ? "ui-disabled" : "";
-				btn = '<a href="#popupAngka' + this.mode + '" data-rel="popup" data-role="button" data-inline="true" class="' + cls + '" id="angka-' + i + '-' + j + '">' + angka + '</a>';
+				btn = '<a href="#popupAngka' + this.mode + '" data-rel="popup" data-role="button" data-inline="true" class="' + cls + '" id="angka-' + i + '-' + j + "-" + this.mode + '">' + angka + '</a>';
 				$markup += btn;
 			}
 			$markup += '</div>';
@@ -44,7 +44,6 @@ function Sudoku(){
 			, temp = this.idLastButton.split("-")
 			, col = parseInt(temp[1]) - 1
 			, row = parseInt(temp[2]) - 1;
-
 		this.model.setValueAt(angka, col, row);
 		this.render();
 		this.idLastButton = "";
@@ -59,7 +58,7 @@ function Sudoku(){
 		
 		for (;i<=9; i++){
 			for (j=1; j<=9; j++){
-				$objek = $("#angka-" + i + "-" + j);
+				$objek = $("#angka-" + i + "-" + j + "-" + this.mode);
 				$objek.on('tap', function(evt){
 					root.idLastButton = $(this)[0].id;
 				});
