@@ -2,12 +2,13 @@ function SudokuModelLV(sudokuValues){
 	this.spec = new SudokuSpec(sudokuValues);
 	this.type = [[0,1], [0, 2], [1, 2]];
 	this.maskedSpec;
+	this.limit = 50;
 	
 	// random value of the matrix for given times
-	this.generate = function(limit){
+	this.generate = function(){
 		var areaNumber, typeNumber, i;
 		
-		for (i=0; i<limit; i++){
+		for (i=0; i<this.limit; i++){
 			areaNumber = generateArea();
 			typeNumber = generateType();
 			this.swapLineInArea(areaNumber, typeNumber);
